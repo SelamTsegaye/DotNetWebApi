@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetWebApi", "DotNetWebApi\DotNetWebApi.csproj", "{C690AE57-7CBF-4E15-B1A5-B43708134777}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetWebApi.Tests", "DotNetWebApi.Tests\DotNetWebApi.Tests.csproj", "{E1EAF790-1218-4ABE-B017-6CF7756A7798}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C690AE57-7CBF-4E15-B1A5-B43708134777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C690AE57-7CBF-4E15-B1A5-B43708134777}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C690AE57-7CBF-4E15-B1A5-B43708134777}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C690AE57-7CBF-4E15-B1A5-B43708134777}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1EAF790-1218-4ABE-B017-6CF7756A7798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1EAF790-1218-4ABE-B017-6CF7756A7798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1EAF790-1218-4ABE-B017-6CF7756A7798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1EAF790-1218-4ABE-B017-6CF7756A7798}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
