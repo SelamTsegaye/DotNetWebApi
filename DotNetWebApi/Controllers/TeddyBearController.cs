@@ -4,7 +4,7 @@ using DotNetWebApi.Models;
 
 namespace DotNetWebApi.Controllers;
 
-[Route("api/")]
+[Route("[controller]")]
 [ApiController]
 public class TeddyBearController : ControllerBase
 {
@@ -13,6 +13,23 @@ public class TeddyBearController : ControllerBase
     public TeddyBearController(TeddyBearsContext context)
     {
         _context = context;
+    }
+
+    [HttpGet("TeddyBears")]
+    public async Task<ActionResult<IEnumerable<TeddyBearReturn>>> GetTeddyBears()
+    {
+        var teddyBears = from teddyBear in _context.TeddyBears
+                    select new TeddyBearReturn () {
+                            Id = teddyBear.Id,
+                            Name = teddyBear.Name,
+                            PrimaryColor = teddyBear.PrimaryColor,
+                            AccentColor = teddyBear.AccentColor,
+                            IsDressed = teddyBear.IsDressed == true,
+                            OwnerName = teddyBear.OwnerName,
+                            Characteristic = teddyBear.Characteristic,
+                            Picnics = teddyBear.Picnics.Select(p => p.PicnicName)
+                        };
+        return await teddyBears.ToListAsync();
     }
 
     [HttpPost("TeddyBears")]

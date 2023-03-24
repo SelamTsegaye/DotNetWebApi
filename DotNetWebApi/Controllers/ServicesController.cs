@@ -3,7 +3,7 @@ using DotNetWebApi.Services;
 
 namespace DotNetWebApi.Controllers;
 
-[Route("api/")]
+[Route("[controller]")]
 [ApiController]
 public class ServicesController : ControllerBase
 {

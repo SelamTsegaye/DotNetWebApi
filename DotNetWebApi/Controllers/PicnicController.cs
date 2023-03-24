@@ -4,7 +4,7 @@ using DotNetWebApi.Models;
 
 namespace DotNetWebApi.Controllers;
 
-[Route("api/")]
+[Route("[controller]")]
 [ApiController]
 public class PicnicController : ControllerBase
 {
@@ -14,7 +14,8 @@ public class PicnicController : ControllerBase
     {
         _context = context;
     }
-[HttpGet("Picnics")]
+
+    [HttpGet("Picnics")]
     public async Task<ActionResult<IEnumerable<PicnicReturn>>> GetPicnics()
     {
         var picnics = from picnic in _context.Picnics
@@ -29,6 +30,7 @@ public class PicnicController : ControllerBase
                         };
         return await picnics.ToListAsync();
     }
+
     [HttpGet("Picnics/{name}")]
     public async Task<ActionResult<PicnicReturn>> GetPicnicByName(string name)
     {
@@ -49,54 +51,6 @@ public class PicnicController : ControllerBase
         }
         //otherwise
         return picnicFound;
-    }
-    [HttpGet("Picnics/Locations/{locationName}")]
-    public async Task<ActionResult<IEnumerable<PicnicReturn>>> GetPicnicsByLocation(string locationName)
-    {
-        var picnics = _context.Picnics
-                                .Where(p => p.Location != null && p.Location.LocationName == locationName)
-                                .Select(p => new PicnicReturn
-                                {
-                                    Id = p.Id,
-                                    PicnicName = p.PicnicName,
-                                    Location = p.Location,
-                                    StartTime = p.StartTime,
-                                    HasMusic = p.HasMusic == true,
-                                    HasFood = p.HasFood == true,
-                                    TeddyBears = p.TeddyBears.Select(tb => tb.Name)
-                                });
-        var picnicsFound = await picnics.ToListAsync();
-        if (!picnicsFound.Any()){
-            return NotFound();
-        }
-        //otherwise
-        return picnicsFound;
-    }
-
-    [HttpPut("Locations2/{Id}")]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<PicnicLocation>> UpdatePicnicLocation2(int Id, PicnicLocation location)
-    {
-        if (Id != location.Id)
-        {
-            return BadRequest("URL Id must match the object Id");
-        }
-
-        var newLocationValue = new PicnicLocation
-        {
-            Id = Id,
-            LocationName = location.LocationName,
-            Capacity = location.Capacity,
-            Municipality = location.Municipality
-        };
-
-        _context.PicnicLocations.Update(newLocationValue);
-
-        await _context.SaveChangesAsync();
-
-        return NoContent();
     }
 
     [HttpPost("Picnics")]
