@@ -9,7 +9,7 @@ namespace DotNetWebApi.Models;
 /// <summary>
 /// The location of one or more picnics.  Every picnic must have a location
 /// </summary>
-public partial class PicnicLocationReturn
+public class PicnicLocationReturn
 {
     /// <summary>
     /// The Primary Key

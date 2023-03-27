@@ -15,7 +15,10 @@ public class LocationController : ControllerBase
         _context = context;
     }
 
-    [HttpGet("Locations")]
+    [HttpGet("")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<PicnicLocationReturn>>> GetLocations()
     {
         var locations = from location in _context.PicnicLocations
@@ -29,7 +32,7 @@ public class LocationController : ControllerBase
         return await locations.ToListAsync();
     }
 
-    [HttpPut("Locations/{Id}")]
+    [HttpPut("{Id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -55,7 +58,7 @@ public class LocationController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("Locations2/{Id}")]
+    [HttpPut("2/{Id}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -81,7 +84,10 @@ public class LocationController : ControllerBase
         return NoContent();
     }
 
-    [HttpGet("Picnics/Locations/{locationName}")]
+    [HttpGet("Picnics/{locationName}")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<IEnumerable<PicnicReturn>>> GetPicnicsByLocation(string locationName)
     {
         var picnics = _context.Picnics

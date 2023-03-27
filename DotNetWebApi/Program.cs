@@ -23,7 +23,7 @@ public class Program
         builder.Services.AddSingleton<IExternalApiService, ExternalApiService>();
         
         var app = builder.Build();
-        app.UsePathBase("api/");
+        app.UsePathBase("/api/");
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {

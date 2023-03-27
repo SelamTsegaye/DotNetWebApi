@@ -15,7 +15,7 @@ public class PicnicController : ControllerBase
         _context = context;
     }
 
-    [HttpGet("Picnics")]
+    [HttpGet("")]
     public async Task<ActionResult<IEnumerable<PicnicReturn>>> GetPicnics()
     {
         var picnics = from picnic in _context.Picnics
@@ -31,7 +31,7 @@ public class PicnicController : ControllerBase
         return await picnics.ToListAsync();
     }
 
-    [HttpGet("Picnics/{name}")]
+    [HttpGet("{name}")]
     public async Task<ActionResult<PicnicReturn>> GetPicnicByName(string name)
     {
         var picnics = from picnic in _context.Picnics
@@ -53,7 +53,7 @@ public class PicnicController : ControllerBase
         return picnicFound;
     }
 
-    [HttpPost("Picnics")]
+    [HttpPost("")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<ActionResult<PicnicCreate>> CreatePicnic(PicnicCreate picnic)
     {
