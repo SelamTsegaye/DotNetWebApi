@@ -89,4 +89,30 @@ public class PicnicController : ControllerBase
 
         return CreatedAtAction(nameof(CreatePicnic), new { id = newPicnic.Id }, picnicToReturn);
     }
+
+    [HttpGet("{locationName}")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<PicnicReturn>>> GetPicnicsByLocation(string locationName)
+    {
+        var picnics = _context.Picnics
+                                .Where(p => p.Location != null && p.Location.LocationName == locationName)
+                                .Select(p => new PicnicReturn
+                                {
+                                    Id = p.Id,
+                                    PicnicName = p.PicnicName,
+                                    Location = p.Location,
+                                    StartTime = p.StartTime,
+                                    HasMusic = p.HasMusic == true,
+                                    HasFood = p.HasFood == true,
+                                    TeddyBears = p.TeddyBears.Select(tb => tb.Name)
+                                });
+        var picnicsFound = await picnics.ToListAsync();
+        if (!picnicsFound.Any()){
+            return NotFound();
+        }
+        //otherwise
+        return picnicsFound;
+    }
 }
