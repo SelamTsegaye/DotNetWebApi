@@ -15,7 +15,7 @@ public class TeddyBearController : ControllerBase
         _context = context;
     }
 
-    [HttpGet("")]
+    [HttpGet()]
     public async Task<ActionResult<IEnumerable<TeddyBearReturn>>> GetTeddyBears()
     {
         var teddyBears = from teddyBear in _context.TeddyBears
@@ -32,7 +32,7 @@ public class TeddyBearController : ControllerBase
         return await teddyBears.ToListAsync();
     }
 
-    [HttpPost("")]
+    [HttpPost()]
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<ActionResult<TeddyBear>> CreateTeddyBear(TeddyBear teddyBear)
     {

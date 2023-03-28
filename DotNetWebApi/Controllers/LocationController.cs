@@ -15,7 +15,7 @@ public class LocationController : ControllerBase
         _context = context;
     }
 
-    [HttpGet("")]
+    [HttpGet()]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

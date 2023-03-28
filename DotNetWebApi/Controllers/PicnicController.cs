@@ -15,7 +15,7 @@ public class PicnicController : ControllerBase
         _context = context;
     }
 
-    [HttpGet("")]
+    [HttpGet()]
     public async Task<ActionResult<IEnumerable<PicnicReturn>>> GetPicnics()
     {
         var picnics = from picnic in _context.Picnics
