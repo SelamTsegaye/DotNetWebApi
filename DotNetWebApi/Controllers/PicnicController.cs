@@ -53,7 +53,7 @@ public class PicnicController : ControllerBase
         return picnicFound;
     }
 
-    [HttpPost("")]
+    [HttpPost()]
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<ActionResult<PicnicCreate>> CreatePicnic(PicnicCreate picnic)
     {
@@ -90,7 +90,7 @@ public class PicnicController : ControllerBase
         return CreatedAtAction(nameof(CreatePicnic), new { id = newPicnic.Id }, picnicToReturn);
     }
 
-    [HttpGet("{locationName}")]
+    [HttpGet("Locations/{locationName}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
